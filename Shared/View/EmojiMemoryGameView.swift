@@ -11,35 +11,49 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var emojiGameVM: EmojiMemoryGame
     
     var body: some View {
-        HStack {
-            ForEach(emojiGameVM.cards) { card in
-                CardView(card: card)
-                    .onTapGesture {
-                        emojiGameVM.choose(card: card)
-                    }
+        Grid(emojiGameVM.cards) { card in
+            CardView(card: card).onTapGesture {
+                emojiGameVM.choose(card: card)
             }
+            .padding(5)
         }
         .padding()
         .foregroundColor(.orange)
-        .font(emojiGameVM.cardsFont)
     }
 }
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
+    
     var body: some View {
+        GeometryReader { geometry in
+            body(for: geometry.size)
+        }
+    }
+    
+    func body(for size: CGSize) -> some View {
         ZStack {
             if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(Color.white)
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(lineWidth: 3)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
             }else {
-                RoundedRectangle(cornerRadius: 10).fill()
+                if !card.isMatched {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
             }
         }
-        .aspectRatio(2/3, contentMode: .fit)
+        .font(Font.system(size: fontSize(for: size)))
+    }
+    
+    // MARK: - Drawing Constants
+    let cornerRadius: CGFloat = 10
+    let edgeLineWidth: CGFloat = 3
+    
+    func fontSize(for size: CGSize) -> CGFloat {
+        min(size.width, size.height) * 0.75
     }
     
 }
