@@ -11,14 +11,33 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var emojiGameVM: EmojiMemoryGame
     
     var body: some View {
-        Grid(emojiGameVM.cards) { card in
-            CardView(card: card).onTapGesture {
-                emojiGameVM.choose(card: card)
+        GeometryReader{ geometry in
+            VStack(alignment: .leading) {
+                Text(emojiGameVM.themeVM.title)
+                    .font(.largeTitle)
+                Grid(emojiGameVM.cards) { card in
+                    CardView(card: card).onTapGesture {
+                        emojiGameVM.choose(card: card)
+                    }
+                    .foregroundColor(emojiGameVM.themeVM.color)
+                    .padding(5)
+                }
+                Divider()
+                HStack{
+                    Spacer()
+                    Text("Score: \(emojiGameVM.score)")
+                        .font(.title)
+                    Spacer()
+                }
+                
+                .background(Color(UIColor.systemBackground))
             }
-            .padding(5)
         }
         .padding()
-        .foregroundColor(.orange)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: Button("New Game", action: {
+            emojiGameVM.newGame()
+        }))
     }
 }
 
@@ -61,6 +80,6 @@ struct CardView: View {
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame())
+        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[5]))
     }
 }

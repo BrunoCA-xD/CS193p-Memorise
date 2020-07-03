@@ -8,24 +8,20 @@
 import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
-    @Published private var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    @Published private var game: MemoryGame<String>!
+    @Published private(set) var themeVM: ThemeViewModel
     
-    static func createMemoryGame() -> MemoryGame<String> {
-        let emojis = ["👻", "🎃", "🕷", "💀", "👺"]
-        let randomPairNumber = Int.random(in: 2...emojis.count)
-        return MemoryGame<String>(numberOfPairsOfCards: randomPairNumber) { pairIndex in emojis[pairIndex] }
+    func createMemoryGame() -> MemoryGame<String> {
+        let randomPairNumber = Int.random(in: themeVM.symbols.count/2...themeVM.symbols.count)
+        return MemoryGame<String>(numberOfPairsOfCards: randomPairNumber) { pairIndex in themeVM.symbols[pairIndex] }
     }
     // MARK: - Access to the model
     var cards: Array<MemoryGame<String>.Card> {
-        game.cards
+        return game.cards
     }
     
-    var pairNumber: Int {
-        game.cards.count/2
-    }
-    
-    var cardsFont: Font {
-        return pairNumber<=4 ? .largeTitle : .title
+    var score: String {
+        "\(game.score.value)"
     }
     
     // MARK: - Intent(s)
@@ -33,5 +29,16 @@ class EmojiMemoryGame: ObservableObject {
         game.choose(card: card)
     }
     
+    func newGame() {
+        self.themeVM = ThemeViewModel(theme: builtInThemes.randomElement() ?? builtInThemes[0]) 
+        game = createMemoryGame()
+        
+    }
+    
+    init(theme: Theme){
+        self.themeVM = ThemeViewModel(theme: theme)
+        game = createMemoryGame()
+        
+    }
     
 }
