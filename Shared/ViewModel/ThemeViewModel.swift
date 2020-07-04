@@ -29,6 +29,19 @@ class ThemeViewModel: ObservableObject {
         }
     }
     
+//    @ViewBuilder
+//    var color: some View where View: ShapeStyle {
+//        switch theme.title {
+//        case "Halloween": Color.orange
+//        case "Faces": Color.yellow
+//        case "Flags": Color.gray
+//        case "Food": Color.red
+//        case "Places": LinearGradient(gradient: Gradient(colors: [.red,.blue]), startPoint: .bottomLeading, endPoint: .topTrailing)
+//        case "Vehicles": Color.blue
+//        default: Color.pink
+//        }
+//    }
+    
     init(theme: Theme) {
         self.theme = theme
     }

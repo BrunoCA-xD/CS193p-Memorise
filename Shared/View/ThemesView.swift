@@ -17,7 +17,6 @@ struct ThemesView: View {
                         destination: EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: theme))) {
                             ThemeCell(theme: theme)
                     }
-                    
                 }
             }
             .navigationTitle("Themes")

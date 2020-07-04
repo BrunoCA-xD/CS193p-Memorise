@@ -9,7 +9,7 @@ import Foundation
 
 struct Score {
     
-    var value: Int = 0
+    private(set) var value: Int = 0
     
     mutating func increaseScore() {
         value += 2
