@@ -15,7 +15,7 @@ struct ThemesView: View {
                 ForEach(themes){ theme in
                     NavigationLink(
                         destination: EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: theme))) {
-                            ThemeCell(theme: theme)
+                        ThemeCell(theme: theme)
                     }
                 }
             }
@@ -24,18 +24,23 @@ struct ThemesView: View {
     }
 }
 struct ThemeCell: View {
-    var theme: Theme
+    var themeVM: ThemeViewModel
     var body: some View {
-        VStack(alignment:.leading) {
-            Text("\(theme.title)")
+        VStack(alignment: .leading) {
+            Text(themeVM.title)
+                .foregroundColor(themeVM.color)
                 .font(.title)
             HStack{
-                ForEach(theme.symbols, id: \.self) {
+                ForEach(themeVM.symbols, id: \.self) {
                     symbol in
                     Text(symbol)
                 }
             }
+            
         }
+    }
+    init(theme: Theme) {
+        self.themeVM = ThemeViewModel(theme: theme)
     }
 }
 

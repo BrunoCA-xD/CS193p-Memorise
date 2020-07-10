@@ -14,14 +14,15 @@ struct EmojiMemoryGameView: View {
         GeometryReader{ geometry in
             VStack(alignment: .leading) {
                 Text(emojiGameVM.themeVM.title)
+                    .foregroundColor(emojiGameVM.themeVM.color)
                     .font(.largeTitle)
                 Grid(emojiGameVM.cards) { card in
-                    CardView(card: card).onTapGesture {
+                    CardView(card: card, fillColor: emojiGameVM.themeVM.color).onTapGesture {
                         withAnimation(.easeInOut) {
                             emojiGameVM.choose(card: card)
                         }
                     }
-                    .foregroundColor(emojiGameVM.themeVM.color)
+//                    .foregroundColor(emojiGameVM.themeVM.color)
                     .padding(5)
                 }
                 Divider()
@@ -47,6 +48,7 @@ struct EmojiMemoryGameView: View {
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
+    var fillColor: ColorOrGradientFill
     
     var body: some View {
         GeometryReader { geometry in
@@ -72,11 +74,13 @@ struct CardView: View {
                         Pie(startAngle: Angle(degrees: 0-90),
                             endAngle: Angle(degrees: -animatedBonusRemaining*360-90),
                             clockwise: true)
+                            .foregroundColor(fillColor)
                             .onAppear {startBonusTimeAnimation()}
                     }else {
                         Pie(startAngle: Angle(degrees: 0-90),
                             endAngle: Angle(degrees: -card.bonusRemaining*360-90),
                             clockwise: true)
+                            .foregroundColor(fillColor)
                     }
                 }
                 .padding(5)
@@ -87,7 +91,7 @@ struct CardView: View {
                     .rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
                     .animation(card.isMatched ? Animation.linear(duration: 1).repeatForever(autoreverses: false) : .default)
             }
-            .cardify(isFaceUp: card.isFaceUp)
+            .cardify(isFaceUp: card.isFaceUp, fillColor: fillColor)
             .transition(AnyTransition.scale)
         }
     }
@@ -100,9 +104,8 @@ struct CardView: View {
     
 }
 
-
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[5]))
+        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[2]))
     }
 }

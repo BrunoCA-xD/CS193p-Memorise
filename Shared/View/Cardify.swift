@@ -33,7 +33,8 @@ struct Cardify: AnimatableModifier {
                 
             }
             .opacity(isFaceUp ? 1 : 0)
-            RoundedRectangle(cornerRadius: cornerRadius).fill().opacity(isFaceUp ? 0 : 1)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(fillColor).opacity(isFaceUp ? 0 : 1)
         }
         .rotation3DEffect(
             Angle(degrees: rotation),
@@ -42,14 +43,17 @@ struct Cardify: AnimatableModifier {
     }
     
     
-    init(isFaceUp: Bool) {
+    var fillColor: ColorOrGradientFill
+    init(isFaceUp: Bool, fillColor: ColorOrGradientFill) {
         rotation = isFaceUp ? 0 : 180
+        self.fillColor = fillColor
     }
 }
 
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(isFaceUp: Bool, fillColor: ColorOrGradientFill) -> some View {
+        self.modifier(Cardify(isFaceUp: isFaceUp, fillColor: fillColor))
     }
 }
+

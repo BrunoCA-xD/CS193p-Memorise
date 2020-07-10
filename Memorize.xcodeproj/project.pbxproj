@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562E012D24B66653002B8863 /* Extensions+ColorOrGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E012C24B66653002B8863 /* Extensions+ColorOrGradient.swift */; };
+		562E012E24B66653002B8863 /* Extensions+ColorOrGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E012C24B66653002B8863 /* Extensions+ColorOrGradient.swift */; };
 		5665A7EE24AF7A4F00D113E8 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5665A7ED24AF7A4F00D113E8 /* Grid.swift */; };
 		5665A7EF24AF7A4F00D113E8 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5665A7ED24AF7A4F00D113E8 /* Grid.swift */; };
 		5665A7F124AF7E8400D113E8 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5665A7F024AF7E8400D113E8 /* GridLayout.swift */; };
@@ -57,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		562E012C24B66653002B8863 /* Extensions+ColorOrGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+ColorOrGradient.swift"; sourceTree = "<group>"; };
 		5665A7ED24AF7A4F00D113E8 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		5665A7F024AF7E8400D113E8 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		5665A7F524AF82BA00D113E8 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
@@ -227,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				56A79E9824AFFBE4003A6502 /* Cardify.swift */,
+				562E012C24B66653002B8863 /* Extensions+ColorOrGradient.swift */,
 				5665A7F324AF7E8B00D113E8 /* Components */,
 				566BAE9E24ACC084006FD170 /* EmojiMemoryGameView.swift */,
 				5665A7FE24AFD58A00D113E8 /* ThemesView.swift */,
@@ -401,6 +405,7 @@
 				56A79E9624AFF697003A6502 /* Pie.swift in Sources */,
 				5665A7F124AF7E8400D113E8 /* GridLayout.swift in Sources */,
 				5665A7F624AF82BA00D113E8 /* Array+Extension.swift in Sources */,
+				562E012D24B66653002B8863 /* Extensions+ColorOrGradient.swift in Sources */,
 				5665A80224AFE03B00D113E8 /* ThemeViewModel.swift in Sources */,
 				5665A7EE24AF7A4F00D113E8 /* Grid.swift in Sources */,
 				56A79E9924AFFBE4003A6502 /* Cardify.swift in Sources */,
@@ -421,6 +426,7 @@
 				56A79E9724AFF697003A6502 /* Pie.swift in Sources */,
 				5665A7F224AF7E8400D113E8 /* GridLayout.swift in Sources */,
 				5665A7F724AF82BA00D113E8 /* Array+Extension.swift in Sources */,
+				562E012E24B66653002B8863 /* Extensions+ColorOrGradient.swift in Sources */,
 				5665A80324AFE03B00D113E8 /* ThemeViewModel.swift in Sources */,
 				5665A7EF24AF7A4F00D113E8 /* Grid.swift in Sources */,
 				56A79E9A24AFFBE4003A6502 /* Cardify.swift in Sources */,

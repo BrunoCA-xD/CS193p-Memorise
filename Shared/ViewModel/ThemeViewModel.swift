@@ -17,32 +17,40 @@ class ThemeViewModel: ObservableObject {
     var title: String {
         theme.title
     }
-    var color: Color {
-        switch theme.title {
-        case "Halloween": return .orange
-        case "Faces": return .yellow
-        case "Flags": return .gray
-        case "Food": return .red
-        case "Places": return .purple
-        case "Vehicles": return .blue
-        default: return .pink
-        }
-    }
     
-//    @ViewBuilder
-//    var color: some View where View: ShapeStyle {
-//        switch theme.title {
-//        case "Halloween": Color.orange
-//        case "Faces": Color.yellow
-//        case "Flags": Color.gray
-//        case "Food": Color.red
-//        case "Places": LinearGradient(gradient: Gradient(colors: [.red,.blue]), startPoint: .bottomLeading, endPoint: .topTrailing)
-//        case "Vehicles": Color.blue
-//        default: Color.pink
-//        }
-//    }
+    var color: ColorOrGradientFill {
+        var color: Color? = nil
+        var gradient: LinearGradient? = nil
+        
+        switch theme.title {
+        case "Halloween": color = .orange
+        case "Faces": color = .yellow
+        case "Vehicles": color = .blue
+        case "Places": color = .gray
+        case "Food":
+            gradient = LinearGradient(gradient: .init(colors: [.red, .yellow, .orange]), startPoint: .bottomLeading, endPoint: .topTrailing)
+        default:
+            gradient = LinearGradient(gradient: Gradient(colors: [.red,.blue]), startPoint: .bottomLeading, endPoint: .topTrailing)
+        }
+        return ColorOrGradientFill(color: color, gradient: gradient)!
+    }
     
     init(theme: Theme) {
         self.theme = theme
+    }
+    
+}
+
+struct ColorOrGradientFill {
+    let color: Color?
+    let gradient: LinearGradient?
+    
+    init?(color: Color? = nil, gradient: LinearGradient? = nil) {
+        self.color = color
+        self.gradient = gradient
+        
+        if color == nil && gradient == nil {
+            return nil
+        }
     }
 }
