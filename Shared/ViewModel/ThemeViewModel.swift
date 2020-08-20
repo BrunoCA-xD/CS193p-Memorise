@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ThemeViewModel: ObservableObject {
-    @Published private var theme: Theme
+    @Published private(set) var theme: Theme
     
     var symbols: [String] {
         theme.symbols
@@ -18,21 +18,11 @@ class ThemeViewModel: ObservableObject {
         theme.title
     }
     
-    var color: ColorOrGradientFill {
-        var color: Color? = nil
-        var gradient: LinearGradient? = nil
-        
-        switch theme.title {
-        case "Halloween": color = .orange
-        case "Faces": color = .yellow
-        case "Vehicles": color = .blue
-        case "Places": color = .gray
-        case "Food":
-            gradient = LinearGradient(gradient: .init(colors: [.red, .yellow, .orange]), startPoint: .bottomLeading, endPoint: .topTrailing)
-        default:
-            gradient = LinearGradient(gradient: Gradient(colors: [.red,.blue]), startPoint: .bottomLeading, endPoint: .topTrailing)
+    var color: LinearGradient {
+        let colors = theme.colors.map {
+            Color($0)
         }
-        return ColorOrGradientFill(color: color, gradient: gradient)!
+        return LinearGradient(gradient: .init(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
     
     init(theme: Theme) {
@@ -41,16 +31,3 @@ class ThemeViewModel: ObservableObject {
     
 }
 
-struct ColorOrGradientFill {
-    let color: Color?
-    let gradient: LinearGradient?
-    
-    init?(color: Color? = nil, gradient: LinearGradient? = nil) {
-        self.color = color
-        self.gradient = gradient
-        
-        if color == nil && gradient == nil {
-            return nil
-        }
-    }
-}

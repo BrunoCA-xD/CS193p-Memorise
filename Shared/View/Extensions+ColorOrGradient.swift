@@ -7,41 +7,21 @@
 
 import SwiftUI
 
-extension RoundedRectangle {
-    
-    @ViewBuilder
-    func fill(_ colorOrGradient: ColorOrGradientFill) -> some View {
-        if colorOrGradient.color != nil {
-            self.fill(colorOrGradient.color!)
-        }else {
-            self.fill(colorOrGradient.gradient!)
-        }
-    }
-}
 
 extension Text {
-    
     @ViewBuilder
-    func foregroundColor(_ fill: ColorOrGradientFill) -> some View {
-        if fill.color != nil {
-            self.foregroundColor(fill.color!)
-        }else {
-            self
-                .foregroundColor(.clear)
-                .overlay(fill.gradient!.mask(self))
-        }
+    func foregroundColor(_ fill: LinearGradient) -> some View {
+        self
+            .foregroundColor(.clear)
+            .overlay(fill.mask(self))
     }
 }
 
 extension Pie {
     @ViewBuilder
-    func foregroundColor(_ fill: ColorOrGradientFill) -> some View {
-        if fill.color != nil {
-            self.foregroundColor(fill.color!)
-        }else {
-            self
-                .foregroundColor(.clear)
-                .overlay(fill.gradient!.mask(self))
-        }
+    func foregroundColor(_ fill: LinearGradient) -> some View {
+        self
+            .foregroundColor(.clear)
+            .overlay(fill.mask(self))
     }
 }

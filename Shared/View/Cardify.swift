@@ -43,8 +43,8 @@ struct Cardify: AnimatableModifier {
     }
     
     
-    var fillColor: ColorOrGradientFill
-    init(isFaceUp: Bool, fillColor: ColorOrGradientFill) {
+    var fillColor: LinearGradient
+    init(isFaceUp: Bool, fillColor: LinearGradient) {
         rotation = isFaceUp ? 0 : 180
         self.fillColor = fillColor
     }
@@ -52,7 +52,7 @@ struct Cardify: AnimatableModifier {
 
 
 extension View {
-    func cardify(isFaceUp: Bool, fillColor: ColorOrGradientFill) -> some View {
+    func cardify(isFaceUp: Bool, fillColor: LinearGradient) -> some View {
         self.modifier(Cardify(isFaceUp: isFaceUp, fillColor: fillColor))
     }
 }

@@ -33,6 +33,7 @@ class EmojiMemoryGame: ObservableObject {
         self.themeVM = ThemeViewModel(theme: builtInThemes.randomElement() ?? builtInThemes[0]) 
         game = createMemoryGame()
         
+        print("json: \(themeVM.theme.json?.utf8)")
     }
     
     init(theme: Theme){

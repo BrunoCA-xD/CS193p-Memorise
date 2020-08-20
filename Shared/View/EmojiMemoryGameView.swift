@@ -48,7 +48,7 @@ struct EmojiMemoryGameView: View {
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
-    var fillColor: ColorOrGradientFill
+    var fillColor: LinearGradient
     
     var body: some View {
         GeometryReader { geometry in
