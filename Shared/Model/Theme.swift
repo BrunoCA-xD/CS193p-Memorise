@@ -24,7 +24,7 @@ struct Theme: Identifiable, Codable {
 
 let builtInThemes = [
     Theme(id: 1, title: "Faces", symbols: ["😀","😃","😄","😊","🥰","😇","🤪","🥶"],
-          numberOfPair: 8,
+          numberOfPair: 7,
           colors: [UIColor.RGB(.yellow)]),
     Theme(id: 2, title: "Flags", symbols: ["🇧🇷","🇮🇴","🇨🇦","🇪🇺","🇬🇳"],
           numberOfPair: 5,
@@ -44,7 +44,7 @@ let builtInThemes = [
           numberOfPair: 5,
           colors: [UIColor.RGB(.gray)]),
     Theme(id: 6, title: "Vehicles", symbols: ["🚗","🚔","🚎","🚓","🏍","🚑","🚒","🚛"],
-          numberOfPair: 8,
+          numberOfPair: 6,
           colors: [UIColor.RGB(.blue)]),
     
 ]

@@ -27,9 +27,15 @@ struct ThemeCell: View {
     var themeVM: ThemeViewModel
     var body: some View {
         VStack(alignment: .leading) {
-            Text(themeVM.title)
-                .foregroundColor(themeVM.color)
-                .font(.title)
+            HStack{
+                Text(themeVM.title)
+                    .foregroundColor(themeVM.color)
+                    .font(.title)
+                Spacer()
+                Text("\(themeVM.pairNumbers)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
             HStack{
                 ForEach(themeVM.symbols, id: \.self) {
                     symbol in
@@ -46,7 +52,11 @@ struct ThemeCell: View {
 
 struct ThemesView_Previews: PreviewProvider {
     static var previews: some View {
-        ThemesView()
+        Group {
+            ThemesView()
+            ThemesView()
+                .preferredColorScheme(.dark)
+        }
     }
 }
 

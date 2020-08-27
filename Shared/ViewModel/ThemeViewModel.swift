@@ -25,6 +25,10 @@ class ThemeViewModel: ObservableObject {
         return LinearGradient(gradient: .init(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
     
+    var pairNumbers: String {
+        "[\(theme.numberOfPair)] pairs of cards"
+    }
+    
     init(theme: Theme) {
         self.theme = theme
     }
