@@ -9,7 +9,7 @@ import Foundation
 import UIKit.UIColor
 
 struct Theme: Identifiable, Codable {
-    var id: Int
+    var id: String
     var title: String
     var symbols: [String]
     var numberOfPair: Int
@@ -19,31 +19,47 @@ struct Theme: Identifiable, Codable {
         return try? JSONEncoder().encode(self)
     }
     
+    init?(json: Data?) {
+        if json != nil, let new = try? JSONDecoder().decode(Theme.self, from: json!){
+            self = new
+        }else {
+            return nil
+        }
+    }
+    
+    init(id: String = UUID().uuidString, title: String, symbols: [String] = [], numberOfPair: Int, colors: [UIColor.RGB]) {
+        self.id = id
+        self.title = title
+        self.symbols = symbols
+        self.numberOfPair = numberOfPair
+        self.colors = colors
+    }
+    
 }
 
 
 let builtInThemes = [
-    Theme(id: 1, title: "Faces", symbols: ["😀","😃","😄","😊","🥰","😇","🤪","🥶"],
+    Theme(title: "Faces", symbols: ["😀","😃","😄","😊","🥰","😇","🤪","🥶"],
           numberOfPair: 7,
           colors: [UIColor.RGB(.yellow)]),
-    Theme(id: 2, title: "Flags", symbols: ["🇧🇷","🇮🇴","🇨🇦","🇪🇺","🇬🇳"],
+    Theme(title: "Flags", symbols: ["🇧🇷","🇮🇴","🇨🇦","🇪🇺","🇬🇳"],
           numberOfPair: 5,
           colors: [
             UIColor.RGB(.red),
             UIColor.RGB(.blue)]),
-    Theme(id: 3, title: "Food", symbols: ["🍎","🍓","🌭","🍕","🎂","🍫","🍮"],
+    Theme(title: "Food", symbols: ["🍎","🍓","🌭","🍕","🎂","🍫","🍮"],
           numberOfPair: 7,
           colors: [
             UIColor.RGB(.red),
             UIColor.RGB(.yellow),
             UIColor.RGB(.orange)]),
-    Theme(id: 4, title: "Halloween", symbols: ["👻","🎃","🕷","💀","👺"],
+    Theme(title: "Halloween", symbols: ["👻","🎃","🕷","💀","👺"],
           numberOfPair: 5,
           colors: [UIColor.RGB(.orange)]),
-    Theme(id: 5, title: "Places", symbols: ["🏬","🏥","🏨","🕍","🏭"],
+    Theme(title: "Places", symbols: ["🏬","🏥","🏨","🕍","🏭"],
           numberOfPair: 5,
           colors: [UIColor.RGB(.gray)]),
-    Theme(id: 6, title: "Vehicles", symbols: ["🚗","🚔","🚎","🚓","🏍","🚑","🚒","🚛"],
+    Theme(title: "Vehicles", symbols: ["🚗","🚔","🚎","🚓","🏍","🚑","🚒","🚛"],
           numberOfPair: 6,
           colors: [UIColor.RGB(.blue)]),
     

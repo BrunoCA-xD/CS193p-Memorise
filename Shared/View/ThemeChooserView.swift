@@ -7,19 +7,28 @@
 
 import SwiftUI
 
-struct ThemesView: View {
-    var themes: [Theme] = builtInThemes
+struct ThemeChooserView: View {
+    @ObservedObject var chooserViewModel: ThemeChooserViewModel
     var body: some View {
         NavigationView{
             List{
-                ForEach(themes){ theme in
+                ForEach(chooserViewModel.themes){ theme in
                     NavigationLink(
                         destination: EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: theme))) {
                         ThemeCell(theme: theme)
                     }
                 }
             }
+            .listStyle(GroupedListStyle())
             .navigationTitle("Themes")
+            .navigationBarItems(
+                trailing:
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("+ Theme")
+                    })
+            )
         }
     }
 }
@@ -53,8 +62,8 @@ struct ThemeCell: View {
 struct ThemesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ThemesView()
-            ThemesView()
+            ThemeChooserView(chooserViewModel: ThemeChooserViewModel())
+            ThemeChooserView(chooserViewModel: ThemeChooserViewModel())
                 .preferredColorScheme(.dark)
         }
     }
