@@ -14,11 +14,26 @@ struct Theme: Identifiable {
 }
 
 let builtInThemes = [
-    Theme(id: 1, title: "Faces", symbols: ["😀","😃","😄","😊","🥰","😇","🤪","🥶"]),
-    Theme(id: 2, title: "Flags", symbols: ["🇧🇷","🇮🇴","🇨🇦","🇪🇺","🇬🇳"]),
-    Theme(id: 3, title: "Food", symbols: ["🍎","🍓","🌭","🍕","🎂","🍫","🍮"]),
-    Theme(id: 4, title: "Halloween", symbols: ["👻","🎃","🕷","💀","👺"]),
-    Theme(id: 5, title: "Places", symbols: ["🏬","🏥","🏨","🕍","🏭"]),
-    Theme(id: 6, title: "Vehicles", symbols: ["🚗","🚔","🚎","🚓","🏍","🚑","🚒","🚛"]),
-    
+    Theme(id: 1, title: "Halloween", symbols: [
+            "halloween.jason",
+            "halloween.ghostface",
+            "halloween.saw",
+            "halloween.jason",
+            "halloween.jason",
+            "halloween.jason",
+            "halloween.jason",
+            "halloween.jason",
+            "halloween.jason",
+    ]),
+    Theme(id: 2, title: "Comediantes", symbols: [
+            "comediantes.afonso",
+            "comediantes.afonso",
+            "comediantes.afonso",
+            "comediantes.afonso",
+            "comediantes.afonso",
+            "comediantes.afonso",
+            "halloween.jason",
+            "halloween.jason",
+            "halloween.jason",
+    ])
 ]

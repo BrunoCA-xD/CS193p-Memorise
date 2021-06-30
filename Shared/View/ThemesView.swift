@@ -20,7 +20,21 @@ struct ThemesView: View {
                 }
             }
             .navigationTitle("Themes")
+            .toolbar(content: {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: toggleSidebar, label: {
+                        Image(systemName: "sidebar.left")
+                    })
+                }
+            })
         }
+    }
+    
+    private func toggleSidebar() {
+        #if os(iOS)
+        #else
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        #endif
     }
 }
 struct ThemeCell: View {
@@ -29,12 +43,6 @@ struct ThemeCell: View {
         VStack(alignment:.leading) {
             Text("\(theme.title)")
                 .font(.title)
-            HStack{
-                ForEach(theme.symbols, id: \.self) {
-                    symbol in
-                    Text(symbol)
-                }
-            }
         }
     }
 }

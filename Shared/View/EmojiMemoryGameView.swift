@@ -10,13 +10,11 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var emojiGameVM: EmojiMemoryGame
     
-    var body: some View {
+    var bodyContainer: some View {
         GeometryReader{ geometry in
             VStack(alignment: .leading) {
-                Text(emojiGameVM.themeVM.title)
-                    .font(.largeTitle)
                 Grid(emojiGameVM.cards) { card in
-                    CardView(card: card).onTapGesture {
+                    CardView(card: card, color: emojiGameVM.themeVM.color).onTapGesture {
                         withAnimation(.easeInOut) {
                             emojiGameVM.choose(card: card)
                         }
@@ -31,22 +29,32 @@ struct EmojiMemoryGameView: View {
                         .font(.title)
                     Spacer()
                 }
-                
-                .background(Color(UIColor.systemBackground))
             }
         }
-        .padding()
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: Button("New Game", action: {
-            withAnimation(.easeInOut){
-                emojiGameVM.newGame()
+        .navigationTitle(emojiGameVM.themeVM.title)
+        .toolbar(content: {
+            ToolbarItemGroup(placement: .navigation) {
+                Button("New Game", action: {
+                    withAnimation(.easeInOut){
+                        emojiGameVM.newGame()
+                    }
+                })
             }
-        }))
+        })
+    }
+    
+    var body: some View {
+        #if os(iOS)
+        return bodyContainer.navigationBarTitleDisplayMode(.inline)
+        #else
+        return bodyContainer
+        #endif
     }
 }
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
+    var color: Color
     
     var body: some View {
         GeometryReader { geometry in
@@ -66,26 +74,27 @@ struct CardView: View {
     @ViewBuilder
     private func body(for size: CGSize) -> some View {
         if card.isFaceUp || !card.isMatched {
-            ZStack{
+            ZStack(alignment: .topTrailing){
+                Image(card.content)
+                    .resizable()
+                    .roundedRectangleClipped()
                 Group {
                     if card.isConsumingBonusTime{
                         Pie(startAngle: Angle(degrees: 0-90),
                             endAngle: Angle(degrees: -animatedBonusRemaining*360-90),
                             clockwise: true)
                             .onAppear {startBonusTimeAnimation()}
-                    }else {
+                    } else {
                         Pie(startAngle: Angle(degrees: 0-90),
                             endAngle: Angle(degrees: -card.bonusRemaining*360-90),
                             clockwise: true)
                     }
                 }
+                .frame(width: size.width * 0.3, height: size.width * 0.3)
+                .scaledToFill()
                 .padding(5)
                 .opacity(0.4)
                 .transition(.scale)
-                Text(card.content)
-                    .font(Font.system(size: fontSize(for: size)))
-                    .rotationEffect(Angle(degrees: card.isMatched ? 360 : 0))
-                    .animation(card.isMatched ? Animation.linear(duration: 1).repeatForever(autoreverses: false) : .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
             .transition(AnyTransition.scale)
@@ -103,6 +112,6 @@ struct CardView: View {
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[5]))
+        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[0]))
     }
 }

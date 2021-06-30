@@ -19,28 +19,11 @@ class ThemeViewModel: ObservableObject {
     }
     var color: Color {
         switch theme.title {
-        case "Halloween": return .orange
-        case "Faces": return .yellow
-        case "Flags": return .gray
-        case "Food": return .red
-        case "Places": return .purple
-        case "Vehicles": return .blue
-        default: return .pink
+        case "Halloween": return Color("halloween.card")
+        case "Comediantes": return Color("comediantes.card")
+        default: return .blue
         }
     }
-    
-//    @ViewBuilder
-//    var color: some View where View: ShapeStyle {
-//        switch theme.title {
-//        case "Halloween": Color.orange
-//        case "Faces": Color.yellow
-//        case "Flags": Color.gray
-//        case "Food": Color.red
-//        case "Places": LinearGradient(gradient: Gradient(colors: [.red,.blue]), startPoint: .bottomLeading, endPoint: .topTrailing)
-//        case "Vehicles": Color.blue
-//        default: Color.pink
-//        }
-//    }
     
     init(theme: Theme) {
         self.theme = theme
