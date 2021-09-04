@@ -17,8 +17,15 @@ class ThemeViewModel: ObservableObject {
     var title: String {
         theme.title
     }
-    var color: Color {
-        Color(theme.color)
+    
+    var color: Color? {
+        return theme.color != nil ? Color(theme.color!) : nil
+    }
+    
+    var cardIllustration: Image? {
+        return theme.backIllustration != nil ?
+            Image(theme.backIllustration!)
+            : nil
     }
     
     init(theme: Theme) {

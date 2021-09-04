@@ -11,7 +11,8 @@ struct Theme: Identifiable {
     var id: Int
     var title: String
     var symbols: [String]
-    var color: String
+    var color: String? = nil
+    var backIllustration: String? = nil
 }
 
 let builtInThemes = [
@@ -37,6 +38,6 @@ let builtInThemes = [
         id: 4,
         title: "Vilões",
         symbols: Assets.CardImages.Villains.allCases.map{ $0.name },
-        color: Assets.CardColors.villains.name
+        backIllustration: Assets.CardImages.Halloween.lycan.name
     )
 ]

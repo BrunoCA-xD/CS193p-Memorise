@@ -13,6 +13,7 @@ struct Cardify: AnimatableModifier {
     private let edgeLineWidth: CGFloat = 3
     
     var rotation: Double
+    var cardBack: CardBackFace
     var isFaceUp: Bool {
         rotation < 90
     }
@@ -33,7 +34,7 @@ struct Cardify: AnimatableModifier {
                 
             }
             .opacity(isFaceUp ? 1 : 0)
-            RoundedRectangle(cornerRadius: cornerRadius).fill().opacity(isFaceUp ? 0 : 1)
+            cardBack.opacity(isFaceUp ? 0 : 1)
         }
         .rotation3DEffect(
             Angle(degrees: rotation),
@@ -41,15 +42,33 @@ struct Cardify: AnimatableModifier {
         )
     }
     
-    
-    init(isFaceUp: Bool) {
+    init(isFaceUp: Bool, cardBack: CardBackFace) {
         rotation = isFaceUp ? 0 : 180
+        self.cardBack = cardBack
     }
 }
-
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(isFaceUp: Bool, cardBack: CardBackFace) -> some View {
+        self.modifier(Cardify(isFaceUp: isFaceUp, cardBack: cardBack))
     }
 }
+
+public struct CardBackFace: View {
+    var image: Image?
+    
+    init(image: Image?) {
+        self.image = image
+    }
+    
+    public var body: some View {
+        if let themeIllustration = image {
+            themeIllustration
+                .resizable()
+                .roundedRectangleClipped()
+        } else {
+            RoundedRectangle(cornerRadius: 10).fill()
+        }
+    }
+}
+    

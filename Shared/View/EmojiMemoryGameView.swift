@@ -14,7 +14,10 @@ struct EmojiMemoryGameView: View {
         GeometryReader{ geometry in
             VStack(alignment: .leading) {
                 Grid(emojiGameVM.cards) { card in
-                    CardView(card: card, color: emojiGameVM.themeVM.color).onTapGesture {
+                    CardView(
+                        card: card,
+                        cardBackFace: CardBackFace(image: emojiGameVM.themeVM.cardIllustration)
+                    ).onTapGesture {
                         withAnimation(.easeInOut) {
                             emojiGameVM.choose(card: card)
                         }
@@ -54,7 +57,7 @@ struct EmojiMemoryGameView: View {
 
 struct CardView: View {
     var card: MemoryGame<String>.Card
-    var color: Color
+    var cardBackFace: CardBackFace
     
     var body: some View {
         GeometryReader { geometry in
@@ -73,7 +76,7 @@ struct CardView: View {
     
     @ViewBuilder
     private func body(for size: CGSize) -> some View {
-        if card.isFaceUp || !card.isMatched {
+        ZStack {
             ZStack(alignment: .topTrailing){
                 Image(card.content)
                     .resizable()
@@ -96,9 +99,12 @@ struct CardView: View {
                 .opacity(0.4)
                 .transition(.scale)
             }
-            .cardify(isFaceUp: card.isFaceUp)
-            .transition(AnyTransition.scale)
         }
+        .cardify(
+            isFaceUp: card.isFaceUp || card.isMatched,
+            cardBack: cardBackFace
+        )
+        .transition(AnyTransition.scale)
     }
     
     // MARK: - Drawing Constants
@@ -106,12 +112,10 @@ struct CardView: View {
     private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.7
     }
-    
 }
-
 
 struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[0]))
+        EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes[3]))
     }
 }
