@@ -37,6 +37,8 @@
 		56A79E9724AFF697003A6502 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A79E9524AFF697003A6502 /* Pie.swift */; };
 		56A79E9924AFFBE4003A6502 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A79E9824AFFBE4003A6502 /* Cardify.swift */; };
 		56A79E9A24AFFBE4003A6502 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A79E9824AFFBE4003A6502 /* Cardify.swift */; };
+		AF897B56269A19A1007DD020 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF897B55269A19A1007DD020 /* Assets.swift */; };
+		AF897B57269A19A1007DD020 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF897B55269A19A1007DD020 /* Assets.swift */; };
 		AF908273268CA0EC00B917D6 /* RoundedRectangleClipped.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF908272268CA0EB00B917D6 /* RoundedRectangleClipped.swift */; };
 		AF908274268CA0EC00B917D6 /* RoundedRectangleClipped.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF908272268CA0EB00B917D6 /* RoundedRectangleClipped.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,7 @@
 		566BAEDD24ACCFB3006FD170 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
 		56A79E9524AFF697003A6502 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		56A79E9824AFFBE4003A6502 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		AF897B55269A19A1007DD020 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		AF908272268CA0EB00B917D6 /* RoundedRectangleClipped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleClipped.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +216,7 @@
 				566BAEDA24ACCC6B006FD170 /* MemoryGame.swift */,
 				5665A7F824AFC3CF00D113E8 /* Score.swift */,
 				5665A7FB24AFD2D100D113E8 /* Theme.swift */,
+				AF897B55269A19A1007DD020 /* Assets.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,6 +408,7 @@
 				566BAEC624ACC086006FD170 /* MemorizeApp.swift in Sources */,
 				56A79E9624AFF697003A6502 /* Pie.swift in Sources */,
 				5665A7F124AF7E8400D113E8 /* GridLayout.swift in Sources */,
+				AF897B56269A19A1007DD020 /* Assets.swift in Sources */,
 				5665A7F624AF82BA00D113E8 /* Array+Extension.swift in Sources */,
 				AF908273268CA0EC00B917D6 /* RoundedRectangleClipped.swift in Sources */,
 				5665A80224AFE03B00D113E8 /* ThemeViewModel.swift in Sources */,
@@ -425,6 +430,7 @@
 				566BAEC724ACC086006FD170 /* MemorizeApp.swift in Sources */,
 				56A79E9724AFF697003A6502 /* Pie.swift in Sources */,
 				5665A7F224AF7E8400D113E8 /* GridLayout.swift in Sources */,
+				AF897B57269A19A1007DD020 /* Assets.swift in Sources */,
 				5665A7F724AF82BA00D113E8 /* Array+Extension.swift in Sources */,
 				AF908274268CA0EC00B917D6 /* RoundedRectangleClipped.swift in Sources */,
 				5665A80324AFE03B00D113E8 /* ThemeViewModel.swift in Sources */,

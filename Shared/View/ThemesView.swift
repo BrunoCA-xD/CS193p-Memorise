@@ -10,6 +10,20 @@ import SwiftUI
 struct ThemesView: View {
     var themes: [Theme] = builtInThemes
     var body: some View {
+        if isMacOS {
+            bodyContainer.toolbar(content: {
+                ToolbarItem(placement: .navigation) {
+                    Button(action: toggleSidebar, label: {
+                        Image(systemName: "sidebar.left")
+                    })
+                }
+            })
+        } else {
+            bodyContainer
+        }
+    }
+    
+    private var bodyContainer: some View {
         NavigationView{
             List{
                 ForEach(themes){ theme in
@@ -20,30 +34,29 @@ struct ThemesView: View {
                 }
             }
             .navigationTitle("Themes")
-            .toolbar(content: {
-                ToolbarItem(placement: .navigation) {
-                    Button(action: toggleSidebar, label: {
-                        Image(systemName: "sidebar.left")
-                    })
-                }
-            })
+            EmojiMemoryGameView(emojiGameVM: EmojiMemoryGame(theme: builtInThemes.randomElement()!))
         }
     }
     
     private func toggleSidebar() {
-        #if os(iOS)
-        #else
+        #if os(macOS)
         NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
         #endif
     }
+    
+    private var isMacOS: Bool {
+        #if os(macOS)
+        return true
+        #endif
+        return false
+    }
 }
+
 struct ThemeCell: View {
     var theme: Theme
     var body: some View {
-        VStack(alignment:.leading) {
-            Text("\(theme.title)")
-                .font(.title)
-        }
+        Text("\(theme.title)")
+            .font(.title)
     }
 }
 

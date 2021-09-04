@@ -11,29 +11,32 @@ struct Theme: Identifiable {
     var id: Int
     var title: String
     var symbols: [String]
+    var color: String
 }
 
 let builtInThemes = [
-    Theme(id: 1, title: "Halloween", symbols: [
-            "halloween.jason",
-            "halloween.ghostface",
-            "halloween.saw",
-            "halloween.jason",
-            "halloween.jason",
-            "halloween.jason",
-            "halloween.jason",
-            "halloween.jason",
-            "halloween.jason",
-    ]),
-    Theme(id: 2, title: "Comediantes", symbols: [
-            "comediantes.afonso",
-            "comediantes.afonso",
-            "comediantes.afonso",
-            "comediantes.afonso",
-            "comediantes.afonso",
-            "comediantes.afonso",
-            "halloween.jason",
-            "halloween.jason",
-            "halloween.jason",
-    ])
+    Theme(
+        id: 1,
+        title: "Halloween",
+        symbols: Assets.CardImages.Halloween.allCases.map{ $0.name },
+        color: Assets.CardColors.halloween.name
+    ),
+    Theme(
+        id: 2,
+        title: "Comediantes",
+        symbols: Assets.CardImages.Comedians.allCases.map{ $0.name },
+        color: Assets.CardColors.comedians.name
+    ),
+    Theme(
+        id: 3,
+        title: "Mitologia Grega",
+        symbols: Assets.CardImages.GreekMitic.allCases.map{ $0.name },
+        color: Assets.CardColors.greekMitic.name
+    ),
+    Theme(
+        id: 4,
+        title: "Vilões",
+        symbols: Assets.CardImages.Villains.allCases.map{ $0.name },
+        color: Assets.CardColors.villains.name
+    )
 ]

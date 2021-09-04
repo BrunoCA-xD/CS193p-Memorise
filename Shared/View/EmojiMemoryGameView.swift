@@ -33,7 +33,7 @@ struct EmojiMemoryGameView: View {
         }
         .navigationTitle(emojiGameVM.themeVM.title)
         .toolbar(content: {
-            ToolbarItemGroup(placement: .navigation) {
+            ToolbarItemGroup(placement: .automatic) {
                 Button("New Game", action: {
                     withAnimation(.easeInOut){
                         emojiGameVM.newGame()

@@ -18,11 +18,7 @@ class ThemeViewModel: ObservableObject {
         theme.title
     }
     var color: Color {
-        switch theme.title {
-        case "Halloween": return Color("halloween.card")
-        case "Comediantes": return Color("comediantes.card")
-        default: return .blue
-        }
+        Color(theme.color)
     }
     
     init(theme: Theme) {
