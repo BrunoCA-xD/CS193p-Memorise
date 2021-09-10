@@ -20,13 +20,15 @@ let builtInThemes = [
         id: 1,
         title: "Halloween",
         symbols: Assets.CardImages.Halloween.allCases.map{ $0.name },
-        color: Assets.CardColors.halloween.name
+        color: Assets.CardColors.halloween.name,
+        backIllustration: Assets.CardIllustrations.halloween.name
     ),
     Theme(
         id: 2,
         title: "Comediantes",
         symbols: Assets.CardImages.Comedians.allCases.map{ $0.name },
-        color: Assets.CardColors.comedians.name
+        color: Assets.CardColors.comedians.name,
+        backIllustration: Assets.CardIllustrations.comedians.name
     ),
     Theme(
         id: 3,

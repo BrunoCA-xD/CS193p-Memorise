@@ -27,7 +27,8 @@ enum Assets {
                  renatoAlbani,
                  tataWerneck,
                  joaoPimenta,
-                 brunaBraga
+                 brunaBraga,
+                 denisonCarvalho
             
             var name: String {
                 return "comedians.\(self.rawValue)"
@@ -39,6 +40,7 @@ enum Assets {
                  cerberus,
                  jellyfish,
                  cyclops,
+                 harpia,
                  hydra,
                  poseidon,
                  quimera,
@@ -53,7 +55,14 @@ enum Assets {
             case joker,
                  darkseid,
                  brainiac,
-                 apocalypse
+                 apocalypse,
+                 drdoom,
+                 sinestro,
+                 galactus,
+                 modok,
+                 magneto,
+                 greenGoblin
+            
             
             var name: String {
                 "villains.\(self.rawValue)"
@@ -70,6 +79,15 @@ enum Assets {
         
         var name: String {
             return "\(self.rawValue).card"
+        }
+    }
+    
+    enum CardIllustrations: String {
+        case halloween,
+             comedians
+        
+        var name: String {
+            return "\(self.rawValue).illustration"
         }
     }
 }
