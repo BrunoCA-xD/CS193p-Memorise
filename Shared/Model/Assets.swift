@@ -68,13 +68,31 @@ enum Assets {
                 "villains.\(self.rawValue)"
             }
         }
+        
+        enum NostalgicGames: String, CaseIterable {
+            case megaman,
+                 crash,
+                 sonic,
+                 mario,
+                 dk,
+                 pokemon,
+                 pacman,
+                 rayman,
+                 ryu
+            
+            
+            var name: String {
+                "nostalgicGames.\(self.rawValue)"
+            }
+        }
     }
     
     enum CardColors: String {
         case halloween,
              comedians,
              greekMitic,
-             villains
+             villains,
+             nostalgicGames
         
         
         var name: String {

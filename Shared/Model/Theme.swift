@@ -41,5 +41,11 @@ let builtInThemes = [
         title: "Vilões",
         symbols: Assets.CardImages.Villains.allCases.map{ $0.name },
         backIllustration: Assets.CardImages.Halloween.lycan.name
+    ),
+    Theme(
+        id: 5,
+        title: "Jogos nostalgicos",
+        symbols: Assets.CardImages.NostalgicGames.allCases.map{ $0.name },
+        color: Assets.CardColors.nostalgicGames.name
     )
 ]
